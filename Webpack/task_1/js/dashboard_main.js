@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { debounce } from 'lodash';
+import _ from 'lodash';
 
 // Create new elements and append to body
 $('body').append('<p>Holberton Dashboard</p>');
@@ -17,4 +17,4 @@ function updateCounter() {
 }
 
 // Select button and bind click event w/ debounced updateCounter to prevent spammy behavior
-$('button').on('click', debounce(updateCounter, 250));
+$('button').on('click', _.debounce(updateCounter, 500));
