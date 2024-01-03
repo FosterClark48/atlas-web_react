@@ -111,6 +111,8 @@ Copyright - Holberton School
 - Directory: [Webpack](https://github.com/FosterClark48/atlas-web_react/tree/master/Webpack)
 - File: [task_1/js/dashboard_main.js](./task_1/js/dashboard_main.js), [task_1/package.json](./task_1/package.json), [task_1/webpack.config.js](./task_1/webpack.config.js), [task_1/public/index.html](./task_1/public/index.html)
 
+---
+
 ### 2. Adding CSS & Images
 Create a specific configuration for Webpack.
 
@@ -135,6 +137,8 @@ Create a specific configuration for Webpack.
 - GitHub repository: [atlas-web_react](https://github.com/FosterClark48/atlas-web_react)
 - Directory: [Webpack](https://github.com/FosterClark48/atlas-web_react/tree/master/Webpack)
 - File: [task_2/package.json](./task_2/package.json), [task_2/css/main.css](./task_2/css/main.css), [task_2/webpack.config.js](./task_2/webpack.config.js), [task_2/js/dashboard_main.js](./task_2/js/dashboard_main.js), [task_2/public/index.html](./task_2/public/index.html)
+
+---
 
 ### 3. Dev servers, modules, and tree shaking
 Using the folder named `task_3`. **Set up a development server:**
