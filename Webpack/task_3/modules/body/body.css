@@ -1,0 +1,17 @@
+/* #region COUNTER */
+
+#count {
+  display: inline-block;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* #endregion */
+
+/* #region BUTTON */
+
+button {
+  margin-right: 1rem;
+}
+
+/* #endregion */
