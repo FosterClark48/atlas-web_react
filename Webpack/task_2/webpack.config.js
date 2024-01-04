@@ -18,7 +18,36 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            // options: {
+            // mozjpeg: { // Compress JPEG images
+            //   enabled: false,
+            //   progressive: true,
+            //   quality: 75, // Adjust quality between 0 and 100
+            // },
+            // optipng: { // Compress PNG images (better than pngquant for quality)
+            //   enabled: true,
+            //   optimizationLevel: 7, // Optimization level between 0 & 7
+            // },
+            // pngquant: { // Compress PNG images
+            //   enabled: false,
+            //   quality: [0.65, 0.90], // Range of quality
+            //   speed: 4, // Speed/quality trade-off (1=slow, 11=fast)
+            // },
+            // gifsicle: { // Compress GIF images
+            //   enabled: false,
+            //   interlaced: false,
+            // },
+            // webp: { // Compress to WebP format
+            //   enabled: false,
+            //   quality: 75,
+            // },
+            // },
+          },
+        ],
       },
     ],
   },
