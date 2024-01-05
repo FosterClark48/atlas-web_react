@@ -89,7 +89,7 @@ You will need a favicon and the Holberton logo. Download them and add them to th
 #### **Repo:**
 - GitHub repository: [atlas-web_react](https://github.com/FosterClark48/atlas-web_react)
 - Directory: [react_intro](https://github.com/FosterClark48/atlas-web_react/tree/master/react_intro)
-- File: [task_0/dashboards/src/](./task_0/dashboards/src/), [task_0/dashboard/src/App.css](./task_0/dashboard/src/App.css), [task_0/dashboard/src/App.js](./task_0/dashboard/src/App.js)
+- File: [task_0/dashboard/src/](./task_0/dashboard/src/), [task_0/dashboard/src/App.css](./task_0/dashboard/src/App.css), [task_0/dashboard/src/App.js](./task_0/dashboard/src/App.js)
 
 ---
 
