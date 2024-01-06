@@ -45,3 +45,5 @@ export function Notifications() {
     </div>
   );
 }
+
+export default Notifications;
