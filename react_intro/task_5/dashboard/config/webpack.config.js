@@ -2,14 +2,20 @@ const path = require('path');
 
 module.exports = {
 
+  entry: './src/index.js',
+
   // Output bundle.js to dist folder
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
 
+  mode: 'development',
+
   devServer: {
-    contentBase: './dist',
+    static: {
+      directory: path.join(__dirname, 'dist'), // replaces contentBase
+    },
     compress: true,
     hot: true,
   },
@@ -35,6 +41,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         use: [
+          'file-loader',
           {
             loader: 'image-webpack-loader',
           },
