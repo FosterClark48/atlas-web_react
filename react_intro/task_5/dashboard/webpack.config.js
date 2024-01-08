@@ -19,6 +19,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/, // regex to target both .js and .jsx files
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
         test: /\.css$/, // regex to tell Webpack what files to transform
         use: [
           'style-loader', // injects CSS to the DOM by injecting a <style> tag
