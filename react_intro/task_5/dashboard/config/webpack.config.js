@@ -7,20 +7,20 @@ module.exports = {
   // Output bundle.js to dist folder
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
   },
-
-  mode: 'development',
 
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'), // replaces contentBase
+      directory: path.join(__dirname, '../dist'), // replaces contentBase
     },
     compress: true,
     hot: true,
   },
 
   devtool: 'inline-source-map',
+
+  mode: 'development',
 
   module: {
     rules: [
