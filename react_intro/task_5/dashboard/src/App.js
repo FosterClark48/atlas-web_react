@@ -1,3 +1,4 @@
+import React from "react";
 import logo from './atlas_logo.png';
 import './App.css';
 import { getFullYear, getFooterCopy } from './utils';
