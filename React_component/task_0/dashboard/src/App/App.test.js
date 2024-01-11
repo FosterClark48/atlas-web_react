@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from './App';
 import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
@@ -56,7 +56,7 @@ describe('App', () => {
     const logOutMock = jest.fn();
     const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
 
-    const wrapper = shallow(<App logOut={logOutMock} />);
+    const wrapper = mount(<App logOut={logOutMock} />);
 
     // Simulate the keydown event
     const event = new KeyboardEvent('keydown', { key: 'h', ctrlKey: true });
