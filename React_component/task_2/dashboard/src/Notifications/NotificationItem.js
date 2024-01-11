@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 class NotificationItem extends Component {
 
   render() {
-    const { type, html, value, markAsRead } = this.props;
+    const { id, type, html, value, markAsRead } = this.props;
 
     return html ? (
-      <li data-notification-type={type} dangerouslySetInnerHTML={html} onClick={markAsRead}></li>
+      <li data-notification-type={type} dangerouslySetInnerHTML={html} onClick={() => markAsRead(id)}></li>
     ) : (
-      <li data-notification-type={type} onClick={markAsRead}>{value}</li>
+      <li data-notification-type={type} onClick={() => markAsRead(id)}>{value}</li>
     );
   }
 }
