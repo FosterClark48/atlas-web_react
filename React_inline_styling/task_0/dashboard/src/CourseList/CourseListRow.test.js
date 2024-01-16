@@ -19,4 +19,14 @@ describe('CourseListRow', () => {
     expect(wrapper.find('tr').length).toBe(1);
     expect(wrapper.find('td').length).toBe(2);
   });
+
+  it('applies header style when isHeader is true', () => {
+    const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell='Header' />);
+    expect(wrapper.find('tr').prop('style')).toHaveProperty('backgroundColor', '#d0f0ea');
+  });
+
+  it('applies row style when isHeader is false', () => {
+    const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell='Row' />);
+    expect(wrapper.find('tr').prop('style')).toHaveProperty('backgroundColor', '#f5f5f5ab');
+  });
 })
