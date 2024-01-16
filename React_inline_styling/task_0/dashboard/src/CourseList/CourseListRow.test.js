@@ -22,7 +22,7 @@ describe('CourseListRow', () => {
 
   it('applies header style when isHeader is true', () => {
     const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell='Header' />);
-    expect(wrapper.find('tr').prop('style')).toHaveProperty('backgroundColor', '#d0f0ea');
+    expect(wrapper.find('tr').prop('style')).toHaveProperty('backgroundColor', '#deb5b545');
   });
 
   it('applies row style when isHeader is false', () => {
