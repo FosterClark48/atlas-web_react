@@ -1,0 +1,12 @@
+/* #region BODYSECTION */
+
+.bodySection {
+  font-family: 'Galano Grotesque Alt', sans-serif;
+  font-weight: 400;
+}
+
+.bodySectionWithMargin {
+  margin: 40px;
+}
+
+/* #endregion */
