@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: flex-start;
   border: 3px dotted #00003C;
+  margin-right: .5rem;
 }
 
 .Notifications p {
