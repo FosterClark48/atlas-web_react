@@ -59,7 +59,7 @@ class App extends Component {
             <BodySectionWithMarginBottom title='Course List'>
               <CourseList listCourses={listCourses} />
             </BodySectionWithMarginBottom>
-            ) : (
+          ) : (
             <BodySectionWithMarginBottom title='Log in to continue'>
               <Login />
             </BodySectionWithMarginBottom>
