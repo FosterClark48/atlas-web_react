@@ -5,15 +5,18 @@
   font-weight: 400;
   font-size: 1.1rem;
   font-style: italic;
-  border-top: 5px solid #00003C;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
+  margin: 0;
 }
 
 .Footer-main {
   position: absolute;
   bottom: 0;
   width: 100%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 5px solid #00003C;
 }
 
 /* #endregion */
