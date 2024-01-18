@@ -65,11 +65,11 @@ class Notifications extends Component {
 
     return (
       <>
-        <div className={css(styles.menuItem)}>
+        <div className={css(styles.menuItem)} data-testid="menuItem">
           <p>Your Notifications</p>
         </div>
         {displayDrawer && (
-          <div className={css(styles.notifications)}>
+          <div className={css(styles.notifications)} data-testid="notifications">
             <div className="Notifications-content">
               {listNotifications.length > 0 && (
                 <p className={css(styles.notificationsParagraph)}>
