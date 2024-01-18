@@ -1,8 +1,17 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import BodySection from './BodySection';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe('<BodySection />', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('renders an h2 and p element with correct text', () => {
     const wrapper = shallow(
       <BodySection title="test title">
