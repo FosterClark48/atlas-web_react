@@ -1,15 +1,19 @@
 import React from "react";
-import './Footer.css';
+import PropTypes from 'prop-types';
 import { getFullYear, getFooterCopy } from '../utils/utils';
 
-function Footer() {
+function Footer({ footerClassName }) {
   return (
-    <footer className="Footer-main">
+    <footer className={footerClassName}>
         <p>
           Copyright {getFullYear()} - {getFooterCopy(true)}
         </p>
     </footer>
   );
 }
+
+Footer.propTypes = {
+  footerClassName: PropTypes.string,
+};
 
 export default Footer;
