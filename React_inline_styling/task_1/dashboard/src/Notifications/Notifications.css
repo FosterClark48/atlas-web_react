@@ -20,7 +20,7 @@
   padding-left: 2.3rem;
 } */
 
-/* li[data-notification-type="default"] {
+li[data-notification-type="default"] {
   font-family: 'Galano Grotesque Alt', sans-serif;
   font-weight: 400;
   font-size: 0.8rem;
@@ -39,6 +39,6 @@ ul > li:nth-child(3) {
   font-weight: 400;
   font-size: .9rem;
   color: red;
-} */
+}
 
 /* #endregion */
