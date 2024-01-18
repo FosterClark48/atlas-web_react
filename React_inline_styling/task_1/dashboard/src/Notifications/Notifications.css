@@ -1,6 +1,6 @@
 /* #region NOTIFICATIONS */
 
-.Notifications {
+/* .Notifications {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -18,7 +18,7 @@
 
 .Notifications-content ul {
   padding-left: 2.3rem;
-}
+} */
 
 li[data-notification-type="default"] {
   font-family: 'Galano Grotesque Alt', sans-serif;
