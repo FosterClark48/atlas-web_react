@@ -13,6 +13,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     border: '3px dotted #00003C',
     marginRight: '.5rem',
+    '@media (max-width: 900px)': {
+      width: '100vw', // Set width to 100% of the viewport width
+      height: '100vh', // Set height to 100% of the viewport height
+      padding: 0,
+      margin: 0,
+      overflowY: 'auto',
+      border: 'none',
+      zIndex: 10,
+    },
   },
 
   notificationsParagraph: {
@@ -21,6 +30,10 @@ const styles = StyleSheet.create({
     padding: '1.5rem 0 .3rem .8rem',
     margin: '0',
     fontSize: '.8rem',
+    '@media (max-width: 900px)': {
+      fontSize: '20px',
+      padding: '1rem 0',
+    },
   },
 
   menuItem: {
@@ -30,8 +43,20 @@ const styles = StyleSheet.create({
     marginRight: '1rem',
   },
 
+  noMenuItem: {
+    '@media (max-width: 900px)': {
+      display: 'none',
+    },
+  },
+
   notificationsUnorderedList: {
     paddingLeft: '2.3rem',
+    '@media (max-width: 900px)': {
+      listStyle: 'none',
+      paddingLeft: 0,
+      margin: 0,
+      width: '100%',
+    }
   },
 })
 
@@ -62,9 +87,11 @@ class Notifications extends Component {
       console.log("close button has been clicked");
     };
 
+    const menuItemDisplay = displayDrawer ? css(styles.noMenuItem) : css(styles.menuItem);
+
     return (
       <>
-        <div className={css(styles.menuItem)} data-testid="menuItem">
+        <div className={menuItemDisplay} data-testid="menuItem">
           <p>Your Notifications</p>
         </div>
         {displayDrawer && (

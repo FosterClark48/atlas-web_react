@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: '0.8rem',
     color: 'blue',
+    '@media (max-width: 900px)': {
+      borderBottom: '3px solid black',
+      fontSize: '20px',
+      padding: '10px 8px',
+      listStyleType: 'none',
+      width: '100%',
+    },
   },
 
   listUrgent: {
@@ -16,6 +23,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: '0.8rem',
     color: 'red',
+    '@media (max-width: 900px)': {
+      borderBottom: '3px solid black',
+      fontSize: '20px',
+      padding: '10px 8px',
+      listStyleType: 'none',
+      width: '100%',
+    },
   },
 
   listHtml: {
@@ -23,6 +37,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: '0.9rem',
     color: 'red',
+    '@media (max-width: 900px)': {
+      borderBottom: '3px solid black',
+      fontSize: '20px',
+      padding: '10px 8px',
+      listStyleType: 'none',
+      width: '100%',
+    },
   },
 });
 
