@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
   bodyFont: {
     fontFamily: "'Galano Grotesque Alt', sans-serif;",
   },
+
+  titleMarginLeft: {
+    marginLeft: '4rem',
+  },
 })
 
 class BodySection extends Component {
@@ -13,7 +17,7 @@ class BodySection extends Component {
     const { title, children } = this.props;
     return (
       <div className={css(styles.bodyFont)}>
-        <h2>{title}</h2>
+        <h2 className={css(styles.titleMarginLeft)}>{title}</h2>
         {children}
       </div>
     );
