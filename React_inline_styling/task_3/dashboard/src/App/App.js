@@ -13,7 +13,10 @@ import { StyleSheet, css } from 'aphrodite';
 const styles = StyleSheet.create({
 
   body: {
-    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
 
   headerWrapper: {
@@ -21,12 +24,28 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     borderBottom: '5px solid #00003C',
+    '@media (max-width: 900px)': {
+      flexDirection: 'column-reverse',
+      // alignItems: 'center',
+    },
   },
 
   headerNotifications: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
+    '@media (max-width: 900px)': {
+      width: '100%',
+      alignItems: 'flex-end',
+    },
+  },
+
+  newsMarginLeft: {
+    marginLeft: '4rem',
+  },
+
+  newsMargin: {
+    marginLeft: '40px',
   },
 
   footer: {
@@ -98,9 +117,11 @@ class App extends Component {
               <Login />
             </BodySectionWithMarginBottom>
           )}
-          <BodySection title='News from the School'>
-            <p>Foster got hired!!</p>
-          </BodySection>
+          <div className={css(styles.newsMargin)}>
+            <BodySection title='News from the School'>
+              <p className={css(styles.newsMarginLeft)}>Foster got hired!!</p>
+            </BodySection>
+          </div>
         </div>
         <div>
           <Footer footerClassName={css(styles.footer)} />
