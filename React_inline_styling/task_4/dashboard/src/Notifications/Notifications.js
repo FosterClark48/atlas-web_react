@@ -3,7 +3,18 @@ import NotificationItem from "./NotificationItem";
 import { NotificationItemShape } from "./NotificationItemShape";
 import closeIcon from '../assets/close-icon.png';
 import PropTypes from 'prop-types';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css, } from 'aphrodite';
+
+const fadeIn = {
+  'from': { opacity: 0.5 },
+  'to': { opacity: 1 },
+};
+
+const bounce = {
+  '0%': { tranform: 'translateY(0)' },
+  '50%': { transform: 'translateY(-5px)' },
+  '100%': { tranform: 'translateY(5px)' },
+};
 
 const styles = StyleSheet.create({
 
@@ -13,6 +24,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     border: '3px dotted #00003C',
     marginRight: '.5rem',
+    marginTop: '1rem',
     '@media (max-width: 900px)': {
       width: '100vw', // Set width to 100% of the viewport width
       height: '100vh', // Set height to 100% of the viewport height
@@ -41,12 +53,20 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: '0.8rem',
     marginRight: '1rem',
+    // backgroundColor: '#fff8f8',
+    cursor: 'pointer',
+    position: 'absolute', // Float over every element
+    right: '0', // Float to the right of the screen
+    ':hover': {
+      animationName: [fadeIn, bounce],
+      animationDuration: '1s, 0.5s',
+      animationIterationCount: '1, 3',
+      animationTimingFunction: 'ease-in-out',
+    },
   },
 
   noMenuItem: {
-    '@media (max-width: 900px)': {
-      display: 'none',
-    },
+    display: 'none',
   },
 
   notificationsUnorderedList: {
