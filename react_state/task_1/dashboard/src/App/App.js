@@ -78,9 +78,6 @@ class App extends Component {
         { id: 3, type: 'urgent', html: { __html: '<strong>Urgent requirement</strong> - complete by EOD' } },
       ],
     };
-
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
   }
 
   handleDisplayDrawer = () => {
