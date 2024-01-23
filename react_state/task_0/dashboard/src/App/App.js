@@ -109,7 +109,7 @@ class App extends Component {
 
   render () {
     const { isLoggedIn } = this.props;
-    const { listCourses, listNotifications, displayDrawer } = this.state;
+    const { displayDrawer, listCourses, listNotifications } = this.state;
 
     return (
       <>
