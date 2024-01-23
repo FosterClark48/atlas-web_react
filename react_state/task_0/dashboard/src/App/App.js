@@ -76,7 +76,21 @@ class App extends Component {
         { id: 2, type: 'urgent', value: 'New resume available' },
         { id: 3, type: 'urgent', html: { __html: '<strong>Urgent requirement</strong> - complete by EOD' } },
       ],
+      displayDrawer: false,
     };
+
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+    this.handleHideDrawer = this.handleHideDrawer.bind(this);
+  }
+
+  handleDisplayDrawer = () => {
+    console.log('handleDisplayDrawer called');
+    this.setState({ displayDrawer: true });
+  }
+
+  handleHideDrawer = () => {
+    console.log('handleHideDrawer called');
+    this.setState({ displayDrawer: false });
   }
 
   componentDidMount() {
@@ -97,14 +111,18 @@ class App extends Component {
 
   render () {
     const { isLoggedIn } = this.props;
-    const { listCourses, listNotifications } = this.state;
+    const { listCourses, listNotifications, displayDrawer } = this.state;
 
     return (
       <>
         <div className={css(styles.headerWrapper)}>
           <Header />
           <div className={css(styles.headerNotifications)}>
-            <Notifications listNotifications={listNotifications} />
+            <Notifications
+            listNotifications={listNotifications}
+            displayDrawer={displayDrawer}
+            handleDisplayDrawer={this.handleDisplayDrawer}
+            handleHideDrawer={this.handleHideDrawer} />
           </div>
         </div>
         <div className={css(styles.body)}>
