@@ -2,8 +2,17 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import WithLogging from './WithLogging';
 import Login from '../Login/Login';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe('WithLogging HOC', () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
   it('logs mount and unmount messages for a pure HTML component', () => {
     const ConsoleSpy = jest.spyOn(console, 'log');
     const WrappedComponent = WithLogging(() => <p />);
