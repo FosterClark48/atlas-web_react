@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -68,25 +68,77 @@ const styles = StyleSheet.create({
   },
 });
 
-function Login() {
-  return (
-    <div className={css(styles.loginBody)}>
-        <p className={css(styles.loginParagraph)}>
-          Login to access the full dashboard
-        </p>
-        <form className={css(styles.form)}>
-          <div className={css(styles.labelInputContainer)}>
-            <label className={css(styles.label)} htmlFor="email">Email:</label>
-            <input className={css(styles.input)} type="text" id="email" name="email"></input>
-          </div>
-          <div className={css(styles.labelInputContainer)}>
-            <label className={css(styles.label)} htmlFor="password">Password:</label>
-            <input className={css(styles.input)} type="password" id="password" name="password"></input>
-          </div>
-          <button className={css(styles.button)} type="submit">OK</button>
-        </form>
-    </div>
-  );
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      email: '',
+      password: '',
+      enableSubmit: false,
+    };
+  }
+
+  handleLoginSubmit = (event) => {
+    event.preventDefault();
+    this.setState({ isLoggedIn: true });
+    console.log('Log in button clicked my guy');
+  }
+
+  handleChangeEmail = (event) => {
+    this.setState({ email: event.target.value }, this.checkFormValidity);
+  }
+
+  handleChangePassword = (event) => {
+    this.setState({ password: event.target.value }, this.checkFormValidity);
+  }
+
+  checkFormValidity = () => {
+    const { email, password } = this.state;
+    const enableSubmit = email !== '' && password !== '';
+    this.setState({ enableSubmit: enableSubmit });
+  }
+
+  render() {
+    const { email, password, enableSubmit } = this.state
+    return (
+      <div className={css(styles.loginBody)}>
+          <p className={css(styles.loginParagraph)}>
+            Login to access the full dashboard
+          </p>
+          <form className={css(styles.form)} onSubmit={this.handleLoginSubmit}>
+            <div className={css(styles.labelInputContainer)}>
+              <label className={css(styles.label)} htmlFor="email">Email:</label>
+              <input
+                className={css(styles.input)}
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={this.handleChangeEmail}
+              />
+            </div>
+            <div className={css(styles.labelInputContainer)}>
+              <label className={css(styles.label)} htmlFor="password">Password:</label>
+              <input
+                className={css(styles.input)}
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={this.handleChangePassword}
+              />
+            </div>
+            <input
+              className={css(styles.button)}
+              type="submit"
+              value="OK"
+              disabled={!enableSubmit}
+            />
+          </form>
+      </div>
+    );
+  }
 }
 
 export default Login;
