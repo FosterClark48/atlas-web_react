@@ -87,11 +87,12 @@ class Notifications extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.listNotifications.length > this.props.listNotifications.length;
+    return nextProps.listNotifications.length > this.props.listNotifications.length ||
+      nextProps.displayDrawer !== this.props.displayDrawer;
   }
 
   render() {
-    const { displayDrawer, listNotifications } = this.props;
+    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer } = this.props;
     const buttonStyle = {
       border: 'none',
       background: 'transparent',
@@ -103,15 +104,12 @@ class Notifications extends Component {
       height: '.8rem',
       margin: '0.5rem'
     };
-    const handleButtonClick = () => {
-      console.log("close button has been clicked");
-    };
 
     const menuItemDisplay = displayDrawer ? css(styles.noMenuItem) : css(styles.menuItem);
 
     return (
       <>
-        <div className={menuItemDisplay} data-testid="menuItem">
+        <div className={menuItemDisplay} data-testid="menuItem" onClick={handleDisplayDrawer}>
           <p>Your Notifications</p>
         </div>
         {displayDrawer && (
@@ -141,7 +139,7 @@ class Notifications extends Component {
             <button
               aria-label="Close"
               style={buttonStyle}
-              onClick={handleButtonClick}>
+              onClick={handleHideDrawer}>
                 <img src={closeIcon} alt="Close" style={iconStyle} />
             </button>
           </div>
@@ -154,11 +152,15 @@ class Notifications extends Component {
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
+  handleDisplayDrawer: PropTypes.func,
+  handleHideDrawer: PropTypes.func,
 };
 
 Notifications.defaultProps = {
   displayDrawer: false,
   listNotifications: [],
+  handleDisplayDrawer: () => {},
+  handleHideDrawer: () => {},
 };
 
 export default Notifications;
