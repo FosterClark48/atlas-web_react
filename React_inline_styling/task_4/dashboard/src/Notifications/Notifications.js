@@ -19,20 +19,22 @@ const bounce = {
 const styles = StyleSheet.create({
 
   notifications: {
-    display: 'flex',
+    display: 'relative',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     border: '3px dotted #00003C',
     marginRight: '.5rem',
     marginTop: '1rem',
     '@media (max-width: 900px)': {
+      position: 'fixed',
       width: '100vw', // Set width to 100% of the viewport width
       height: '100vh', // Set height to 100% of the viewport height
+      backgroundColor: 'white',
       padding: 0,
       margin: 0,
       overflowY: 'auto',
       border: 'none',
-      zIndex: 10,
+      zIndex: 2,
     },
   },
 
@@ -78,6 +80,17 @@ const styles = StyleSheet.create({
       width: '100%',
     }
   },
+
+  closeButton: {
+    position: 'absolute',
+    top: '1rem',
+    right: '1rem',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    outline: 'none',
+    zIndex: 3,
+  },
 })
 
 class Notifications extends Component {
@@ -92,12 +105,6 @@ class Notifications extends Component {
 
   render() {
     const { displayDrawer, listNotifications } = this.props;
-    const buttonStyle = {
-      border: 'none',
-      background: 'transparent',
-      cursor: 'pointer',
-      padding: '0'
-    };
     const iconStyle = {
       width: '.8rem',
       height: '.8rem',
@@ -140,7 +147,7 @@ class Notifications extends Component {
             </div>
             <button
               aria-label="Close"
-              style={buttonStyle}
+              className={css(styles.closeButton)}
               onClick={handleButtonClick}>
                 <img src={closeIcon} alt="Close" style={iconStyle} />
             </button>
@@ -157,7 +164,7 @@ Notifications.propTypes = {
 };
 
 Notifications.defaultProps = {
-  displayDrawer: false,
+  displayDrawer: true,
   listNotifications: [],
 };
 
