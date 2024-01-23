@@ -76,7 +76,7 @@ class App extends Component {
         { id: 2, type: 'urgent', value: 'New resume available' },
         { id: 3, type: 'urgent', html: { __html: '<strong>Urgent requirement</strong> - complete by EOD' } },
       ],
-      displayDrawer: false,
+      displayDrawer: false
     };
 
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
