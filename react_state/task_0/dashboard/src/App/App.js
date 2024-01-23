@@ -84,12 +84,10 @@ class App extends Component {
   }
 
   handleDisplayDrawer = () => {
-    console.log('handleDisplayDrawer called');
     this.setState({ displayDrawer: true });
   }
 
   handleHideDrawer = () => {
-    console.log('handleHideDrawer called');
     this.setState({ displayDrawer: false });
   }
 
