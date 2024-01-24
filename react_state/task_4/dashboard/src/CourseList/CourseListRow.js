@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 
@@ -34,22 +34,34 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#deb5b545',
   },
+
+  rowChecked: {
+    backgroundColor: '#e6e4e4',
+  },
 });
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
+  const [isChecked, setIsChecked] = useState(false);
 
-  const baseStyle = isHeader ? styles.header : styles.row;
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const rowStyle = css(
+    isHeader ? styles.header : styles.row,
+    !isHeader && isChecked && styles.rowChecked
+  );
 
   if(isHeader) {
     if(textSecondCell === null) {
       return (
-        <tr className={css(baseStyle, styles.headerRowSpan2)}>
+        <tr className={rowStyle}>
           <th colSpan="2">{textFirstCell}</th>
         </tr>
       );
     } else {
       return (
-        <tr className={css(baseStyle, styles.secondHeaderRow)}>
+        <tr className={rowStyle}>
           <th className={css(styles.secondHeaderRowFirstCell)}>{textFirstCell}</th>
           <th className={css(styles.secondHeaderRowSecondCell)}>{textSecondCell}</th>
         </tr>
@@ -57,8 +69,11 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
     };
   } else {
     return (
-      <tr className={css(baseStyle)}>
-        <td className={css(styles.bodyRowCell)}>{textFirstCell}</td>
+      <tr className={rowStyle}>
+        <td className={css(styles.bodyRowCell)}>
+          <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+          {textFirstCell}
+        </td>
         <td className={css(styles.bodyRowCell)}>{textSecondCell}</td>
       </tr>
     );
