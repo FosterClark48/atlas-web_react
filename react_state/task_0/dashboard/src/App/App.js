@@ -109,8 +109,7 @@ class App extends Component {
 
   render () {
     const { isLoggedIn } = this.props;
-    const {displayDrawer} = this.state;
-    const { listCourses, listNotifications } = this.state;
+    const { displayDrawer, listCourses, listNotifications } = this.state;
 
     return (
       <>
