@@ -102,6 +102,13 @@ class App extends Component {
     this.setState({ displayDrawer: false });
   }
 
+  markNotificationAsRead = (id) => {
+    this.setState({
+      listNotifications: this.state.listNotifications.filter(notification => notification.id !== id)
+    });
+    console.log(`Notification ${id} has been marked read`);
+  }
+
   componentDidMount() {
     this.handleKeyDown = (event) => {
       if(event.ctrlKey && event.key === 'h') {
@@ -128,10 +135,12 @@ class App extends Component {
             <Header />
             <div className={css(styles.headerNotifications)}>
               <Notifications
-              listNotifications={listNotifications}
-              displayDrawer={displayDrawer}
-              handleDisplayDrawer={this.handleDisplayDrawer}
-              handleHideDrawer={this.handleHideDrawer} />
+                listNotifications={listNotifications}
+                displayDrawer={displayDrawer}
+                handleDisplayDrawer={this.handleDisplayDrawer}
+                handleHideDrawer={this.handleHideDrawer}
+                markNotificationAsRead={this.markNotificationAsRead}
+              />
             </div>
           </div>
           <div className={css(styles.body)}>
