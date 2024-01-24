@@ -7,16 +7,14 @@ import Login from '../Login/Login';
 import CourseList from "../CourseList/CourseList";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import BodySection from "../BodySection/BodySection";
-import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
+import UserContext from './AppContext';
 
 const styles = StyleSheet.create({
 
   body: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
   },
 
   headerWrapper: {
@@ -67,6 +65,12 @@ class App extends Component {
     super(props);
     this.state = {
       displayDrawer: false,
+      user: {
+        email: '',
+        password: '',
+        isLoggedIn: false,
+      },
+      logOut: () => {},
       listCourses: [
         { id: 1, name: 'ES6', credit: 60 },
         { id: 2, name: 'Webpack', credit: 20 },
@@ -78,6 +82,16 @@ class App extends Component {
         { id: 3, type: 'urgent', html: { __html: '<strong>Urgent requirement</strong> - complete by EOD' } },
       ],
     };
+  }
+
+  logIn = (email, password) => {
+    this.setState({ user: { email, password, isLoggedIn: true } });
+    console.log('Logged in... my guy');
+  }
+
+  logOut = () => {
+    this.setState({ user: { ...this.state.user, isLoggedIn: false }});
+    console.log('Logging out... my guy');
   }
 
   handleDisplayDrawer = () => {
@@ -105,53 +119,50 @@ class App extends Component {
   }
 
   render () {
-    const { isLoggedIn } = this.props;
-    const { listCourses, listNotifications, displayDrawer } = this.state;
+    const { listCourses, listNotifications, displayDrawer, user } = this.state;
 
     return (
-      <>
-        <div className={css(styles.headerWrapper)}>
-          <Header />
-          <div className={css(styles.headerNotifications)}>
-            <Notifications
-            listNotifications={listNotifications}
-            displayDrawer={displayDrawer}
-            handleDisplayDrawer={this.handleDisplayDrawer}
-            handleHideDrawer={this.handleHideDrawer} />
+      <UserContext.Provider value={{ user: user, logOut: this.logOut, logIn: this.logIn }}>
+        <>
+          <div className={css(styles.headerWrapper)}>
+            <Header />
+            <div className={css(styles.headerNotifications)}>
+              <Notifications
+              listNotifications={listNotifications}
+              displayDrawer={displayDrawer}
+              handleDisplayDrawer={this.handleDisplayDrawer}
+              handleHideDrawer={this.handleHideDrawer} />
+            </div>
           </div>
-        </div>
-        <div className={css(styles.body)}>
-          {isLoggedIn ? (
-            <BodySectionWithMarginBottom title='Course List'>
-              <CourseList listCourses={listCourses} />
-            </BodySectionWithMarginBottom>
-          ) : (
-            <BodySectionWithMarginBottom title='Log in to continue'>
-              <Login />
-            </BodySectionWithMarginBottom>
-          )}
-          <div className={css(styles.newsMargin)}>
-            <BodySection title='News from the School'>
-              <p className={css(styles.newsMarginLeft)}>Foster got hired!!</p>
-            </BodySection>
+          <div className={css(styles.body)}>
+            {user.isLoggedIn ? (
+              <BodySectionWithMarginBottom title='Course List'>
+                <CourseList listCourses={listCourses} />
+              </BodySectionWithMarginBottom>
+            ) : (
+              <BodySectionWithMarginBottom title='Log in to continue'>
+                <Login logIn={this.logIn} />
+              </BodySectionWithMarginBottom>
+            )}
+            <div className={css(styles.newsMargin)}>
+              <BodySection title='News from the School'>
+                <p className={css(styles.newsMarginLeft)}>Foster got hired!!</p>
+              </BodySection>
+            </div>
           </div>
-        </div>
-        <div>
-          <Footer footerClassName={css(styles.footer)} />
-        </div>
-      </>
+          <div>
+            <Footer footerClassName={css(styles.footer)} />
+          </div>
+        </>
+      </UserContext.Provider>
     );
   }
 }
 
 App.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func,
 };
 
 App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => {},
 };
 
 export default App;
