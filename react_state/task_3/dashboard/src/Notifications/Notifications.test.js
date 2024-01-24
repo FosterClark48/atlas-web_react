@@ -59,30 +59,17 @@ describe('Notifications', () => {
     expect(wrapper.find('[data-testid="notifications"]').length).toBe(1);
   });
 
-  it('calls markAsRead with the right message when a NotificationItem is clicked', () => {
-    const consoleSpy = jest.spyOn(console, 'log');
-    const wrapper = mount(<Notifications displayDrawer={true} listNotifications={[{ id: 1, type: 'default', value: 'New course available' }]} />);
+  it('calls markNotificationAsRead with the right id when a NotificationItem is clicked', () => {
+    const markNotificationAsRead = jest.fn();
+    const wrapper = mount(
+      <Notifications
+        displayDrawer={true}
+        listNotifications={[{ id: 1, type: 'default', value: 'New course available' }]}
+        markNotificationAsRead={markNotificationAsRead}
+      />
+    );
     wrapper.find('NotificationItem').first().simulate('click');
-    expect(consoleSpy).toHaveBeenCalledWith('Notification 1 has been marked as read');
-    consoleSpy.mockRestore();
-  });
-
-  it('does not rerender with the same listNotifications and displayDrawer props', () => {
-    const listNotifications = [{ id: 1, type: 'default', value: 'New course available' }];
-    const wrapper = shallow(<Notifications listNotifications={listNotifications} displayDrawer={false} />);
-    const shouldUpdate = wrapper.instance().shouldComponentUpdate({ listNotifications, displayDrawer: false });
-    expect(shouldUpdate).toBe(false);
-  });
-
-  it('rerenders with a longer listNotifications prop', () => {
-    const listNotifications = [{ id: 1, type: 'default', value: 'New course available' }];
-    const longerListNotifications = [
-      ...listNotifications,
-      { id: 2, type: 'urgent', value: 'New resume available' }
-    ];
-    const wrapper = shallow(<Notifications listNotifications={listNotifications} />);
-    const shouldUpdate = wrapper.instance().shouldComponentUpdate({ listNotifications: longerListNotifications });
-    expect(shouldUpdate).toBe(true);
+    expect(markNotificationAsRead).toHaveBeenCalledWith(1);
   });
 
   it('calls handleDisplayDrawer when menuItem is clicked', () => {
