@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import NotificationItem from "./NotificationItem";
 import { NotificationItemShape } from "./NotificationItemShape";
 import closeIcon from '../assets/close-icon.png';
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
 
   notificationsUnorderedList: {
     paddingLeft: '2.3rem',
+    cursor: 'pointer',
     '@media (max-width: 900px)': {
       listStyle: 'none',
       paddingLeft: 0,
@@ -93,19 +94,10 @@ const styles = StyleSheet.create({
   },
 })
 
-class Notifications extends Component {
-
-  markAsRead(id) {
-    console.log(`Notification ${id} has been marked as read`);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return nextProps.listNotifications.length > this.props.listNotifications.length ||
-      nextProps.displayDrawer !== this.props.displayDrawer;
-  }
+class Notifications extends PureComponent {
 
   render() {
-    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer } = this.props;
+    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer, markNotificationAsRead } = this.props;
     const iconStyle = {
       width: '.8rem',
       height: '.8rem',
@@ -129,7 +121,7 @@ class Notifications extends Component {
               )}
               <ul className={css(styles.notificationsUnorderedList)}>
                 {listNotifications.length === 0 ? (
-                  <NotificationItem value='No new notification for now' />
+                  <NotificationItem value='No new notifications for now' />
                 ) : (
                   listNotifications.map(notification => (
                     <NotificationItem
@@ -137,7 +129,7 @@ class Notifications extends Component {
                       type={notification.type}
                       value={notification.value}
                       html={notification.html}
-                      markAsRead={() => this.markAsRead(notification.id)}
+                      markAsRead={() => markNotificationAsRead(notification.id)}
                     />
                   ))
                 )}
@@ -161,6 +153,7 @@ Notifications.propTypes = {
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
+  markNotificationAsRead: PropTypes.func,
 };
 
 Notifications.defaultProps = {
@@ -168,6 +161,7 @@ Notifications.defaultProps = {
   listNotifications: [],
   handleDisplayDrawer: () => {},
   handleHideDrawer: () => {},
+  markNotificationAsRead: () => {},
 };
 
 export default Notifications;
