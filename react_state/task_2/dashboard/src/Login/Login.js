@@ -72,7 +72,6 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
       email: '',
       password: '',
       enableSubmit: false,
@@ -81,7 +80,8 @@ class Login extends Component {
 
   handleLoginSubmit = (event) => {
     event.preventDefault();
-    this.setState({ isLoggedIn: true });
+    const { email, password } = this.state;
+    this.props.logIn(email, password);
     console.log('Log in button clicked my guy');
   }
 
@@ -132,7 +132,7 @@ class Login extends Component {
             <input
               className={css(styles.button)}
               type="submit"
-              value="OK"
+              value="Login"
               disabled={!enableSubmit}
             />
           </form>
