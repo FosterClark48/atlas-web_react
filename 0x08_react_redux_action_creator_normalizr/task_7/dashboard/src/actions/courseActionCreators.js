@@ -1,5 +1,4 @@
 import { SELECT_COURSE, UNSELECT_COURSE } from './courseActionTypes';
-import { useDispatch } from 'react-redux';
 
 export const selectCourse = index => {
   return {
