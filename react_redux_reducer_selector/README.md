@@ -134,7 +134,7 @@ In a file `courseReducer.js`, write a reducer function. The default state should
 Define the **`FETCH_COURSE_SUCCESS`** action
 
 When the action creator sends the action `FETCH_COURSE_SUCCESS`, it also sends the list of courses in a data attribute. The action would look like:
-```json
+```sh
 {
   type: FETCH_COURSE_SUCCESS,
   data: [
@@ -157,7 +157,7 @@ When the action creator sends the action `FETCH_COURSE_SUCCESS`, it also sends t
 }
 ```
 When updating the state of the reducer, you should also set the attribute `isSelected` to false for every item in the list. The expected data from the reducer should be:
-```json
+```sh
 [
   {
     id: 1,
@@ -182,14 +182,14 @@ When updating the state of the reducer, you should also set the attribute `isSel
 Define the **`SELECT_COURSE`** and **`UNSELECT_COURSE`** actions
 
 When the action creator sends the action `SELECT_COURSE`, it also sends an index corresponding to the id of the course to update. The action would look like:
-```json
+```sh
 {
   type: SELECT_COURSE,
   index: 2
 }
 ```
 The expected data from the reducer should be:
-```json
+```sh
 [
   {
     id: 1,
@@ -212,14 +212,14 @@ The expected data from the reducer should be:
 ]
 ```
 When the action creator sends the action `UNSELECT_COURSE`, it also sends an index corresponding to the id of the course to update. The action would look like:
-```json
+```sh
 {
   type: UNSELECT_COURSE,
   index: 2
 }
 ```
 The expected data from the reducer should be:
-```json
+```sh
 [
   {
     id: 1,
@@ -281,7 +281,7 @@ In a file `notificationReducer.js`, write a reducer function. The default state 
 Define the **`FETCH_NOTIFICATIONS_SUCCESS`** action
 
 When the action creator sends the action `FETCH_NOTIFICATIONS_SUCCESS`, it also sends the list of notifications in a data attribute. The action would look like:
-```json
+```sh
 {
   type: FETCH_NOTIFICATIONS_SUCCESS,
   data: [
@@ -304,7 +304,7 @@ When the action creator sends the action `FETCH_NOTIFICATIONS_SUCCESS`, it also 
 }
 ```
 When updating the state of the reducer, you should also set the attribute `isRead` to false for every item in the list. The expected data from the reducer should be:
-```json
+```sh
 {
   filter: "DEFAULT",
   notifications: [
@@ -332,14 +332,14 @@ When updating the state of the reducer, you should also set the attribute `isRea
 Define the **`MARK_AS_READ`** action
 
 When the action creator sends the action `MARK_AS_READ`, it also sends an index corresponding to the id of the notification to update. The action would look like:
-```json
+```sh
 {
   type: MARK_AS_READ,
   index: 2
 }
 ```
 The expected data from the reducer should be:
-```json
+```sh
 {
   filter: "DEFAULT",
   notifications: [
@@ -367,14 +367,14 @@ The expected data from the reducer should be:
 Define the **`SET_TYPE_FILTER`** action
 
 When the action creator sends the action `SET_TYPE_FILTER`, it also sends a filter attribute with either `DEFAULT` or `URGENT`. The action would look like:
-```json
+```sh
 {
   type: SET_TYPE_FILTER,
   filter: "URGENT"
 }
 ```
 The expected data from the reducer should be:
-```json
+```sh
 {
   filter: "URGENT",
   notifications: [
