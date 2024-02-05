@@ -1,7 +1,7 @@
 import { getAllNotificationsByUser } from './notifications';
 import { normalize } from 'normalizr';
 import { user, message, notification } from './notifications';
-import * as notifData from '../../notifications.json';
+import * as notifData from '../../dist/notifications.json';
 
 describe('getAllNotificationsByUser', () => {
   it('returns the correct notifications for user 5debd764a7c57c7839d722e9', () => {

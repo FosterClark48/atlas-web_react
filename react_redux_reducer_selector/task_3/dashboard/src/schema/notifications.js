@@ -1,4 +1,4 @@
-import * as notifData from '../../notifications.json';
+import * as notifData from '../../dist/notifications.json';
 import { schema, normalize } from 'normalizr';
 
 // create entities
