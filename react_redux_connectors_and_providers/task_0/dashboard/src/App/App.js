@@ -171,8 +171,8 @@ class App extends Component {
 
 export function mapStateToProps(state) {
   return {
-    isLoggedIn: state.uiReducer.get('isUserLoggedIn')
-  };
+    isLoggedIn: state && state.uiReducer && state.uiReducer.isUserLoggedIn
+  }
 };
 
 export default connect(mapStateToProps)(App);
