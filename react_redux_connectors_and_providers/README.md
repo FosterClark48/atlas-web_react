@@ -27,7 +27,7 @@ Read or watch:
 At the end of this project, you are expected to be able to [explain to anyone](https://fs.blog/feynman-learning-technique/), **without the help of Google**:
 
 - Redux connectors and how to use them
-- The different functions you can pass to a connector (mapStateToProps, mapDispatchToPros)
+- The different functions you can pass to a connector (mapStateToProps, mapDispatchToProps)
 - How to map an action creator to a component using a connector
 - How to map an async action creator to a component with Redux Thunk
 - What Redux Providers are and how to set up your app’s store
