@@ -169,7 +169,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+export function mapStateToProps(state) {
   return {
     isLoggedIn: state.uiReducer.get('isUserLoggedIn')
   };
