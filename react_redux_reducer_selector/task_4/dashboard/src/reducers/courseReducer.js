@@ -1,21 +1,20 @@
 import { SELECT_COURSE, UNSELECT_COURSE, FETCH_COURSE_SUCCESS } from "../actions/courseActionTypes";
+import { courseNormalizer } from "../schema/courses";
+import { fromJS } from 'immutable';
 
-const initialState = [];
+const initialState = fromJS({
+  courses: {},
+});
 
 function courseReducer(state = initialState, action) {
   switch(action.type) {
     case FETCH_COURSE_SUCCESS:
-      // Add isSelected property to each course & return the updated array
-      return action.data.map(course => ({ ...course, isSelected: false }));
+      const normalizedData = courseNormalizer(action.data);
+      return state.mergeDeep(fromJS({ courses: normalizedData.entities.courses }));
     case SELECT_COURSE:
-      // Map over the state & update isSelected property of matching course
-      return state.map(course =>
-        course.id === action.index ? { ...course, isSelected: true } : course
-      );
+      return state.setIn(['courses', action.index, 'isSelected'], true);
     case UNSELECT_COURSE:
-      return state.map(course =>
-        course.id === action.index ? { ...course, isSelected: false } : course
-      );
+      return state.setIn(['courses', action.index, 'isSelected'], false);
     default:
       return state;
   }

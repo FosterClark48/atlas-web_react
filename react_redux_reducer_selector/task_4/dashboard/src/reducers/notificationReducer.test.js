@@ -1,14 +1,15 @@
 import notificationReducer from "./notificationReducer";
 import { MARK_AS_READ, SET_TYPE_FILTER, FETCH_NOTIFICATIONS_SUCCESS, NotificationTypeFilters } from "../actions/notificationActionTypes";
-import { notification } from "../schema/notifications";
+import { notificationsNormalizer } from "../schema/notifications";
+import { fromJS } from 'immutable';
 
 describe('notificationReducer', () => {
   it('should return the initial state when no action is passed', () => {
     const state = notificationReducer(undefined, {});
-    expect(state).toEqual({
-      notifications: [],
+    expect(state).toEqual(fromJS({
+      notifications: {},
       filter: NotificationTypeFilters.DEFAULT,
-    });
+    }));
   });
 
   it('should handle FETCH_NOTIFICATIONS_SUCCESS action', () => {
@@ -22,22 +23,21 @@ describe('notificationReducer', () => {
       data: notificationsData
     };
     const state = notificationReducer(undefined, action);
-    expect(state.notifications).toEqual(
-      notificationsData.map(notification => ({ ...notification, isRead: false }))
-    );
+    const normalizedData = notificationsNormalizer(notificationsData);
+    expect(fromJS(state.get('notifications'))).toEqual(fromJS(normalizedData.entities.notifications));
   });
 
   it('should handle MARK_AS_READ action', () => {
-    const initialState = {
-      notifications: [{ id: 1, isRead: false }, { id: 2, isRead: false }],
+    const initialState = fromJS({
+      notifications: { '1': { id: 1, isRead: false }, '2': { id: 2, isRead: false } },
       filter: NotificationTypeFilters.DEFAULT,
-    };
+    });
     const action = {
       type: MARK_AS_READ,
-      index: 1
+      index: '1'  // Use string '1' to match the key in the normalized state
     };
     const state = notificationReducer(initialState, action);
-    expect(state.notifications).toContainEqual({ id: 1, isRead: true });
+    expect(state.getIn(['notifications', '1', 'isRead'])).toBe(true);
   });
 
   it('should handle SET_TYPE_FILTER action', () => {
@@ -46,6 +46,6 @@ describe('notificationReducer', () => {
       filter: NotificationTypeFilters.URGENT
     };
     const state = notificationReducer(undefined, action);
-    expect(state.filter).toBe(NotificationTypeFilters.URGENT);
+    expect(state.get('filter')).toBe(NotificationTypeFilters.URGENT);
   });
 });
