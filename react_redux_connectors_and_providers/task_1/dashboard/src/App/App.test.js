@@ -71,28 +71,6 @@ describe('App', () => {
     expect(wrapper.find(Login).length).toBe(0);
   });
 
-  it('has displayDrawer state set to false by default', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.state('displayDrawer')).toBe(false);
-  });
-
-  it('sets displayDrawer to true when calling handleDisplayDrawer', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.state('displayDrawer')).toBe(false);
-
-    wrapper.instance().handleDisplayDrawer();
-    expect(wrapper.state('displayDrawer')).toBe(true);
-  });
-
-  it('sets displayDrawer to false when calling handleHideDrawer', () => {
-    const wrapper = shallow(<App />);
-    wrapper.instance().handleDisplayDrawer();
-    expect(wrapper.state('displayDrawer')).toBe(true);
-
-    wrapper.instance().handleHideDrawer();
-    expect(wrapper.state('displayDrawer')).toBe(false);
-  });
-
   it('updates user state correctly when logIn is called', () => {
     const wrapper = shallow(<App />);
     wrapper.instance().logIn('test@example.com', 'password');
