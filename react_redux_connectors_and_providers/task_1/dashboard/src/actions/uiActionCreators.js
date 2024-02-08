@@ -57,11 +57,3 @@ export const loginRequest = (email, password) => {
     }
   };
 };
-
-// Higher-order function to bind UI action creators
-export const bindUIActionCreators = (dispatch) => ({
-  boundLogin: (email, password) => dispatch(login(email, password)),
-  boundLogout: () => dispatch(logout()),
-  boundDisplayNotificationDrawer: () => dispatch(displayNotificationDrawer()),
-  boundHideNotificationDrawer: () => dispatch(hideNotificationDrawer())
-});

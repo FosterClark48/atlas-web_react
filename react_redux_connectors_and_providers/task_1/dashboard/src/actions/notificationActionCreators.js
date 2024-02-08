@@ -13,9 +13,3 @@ export const setNotificationFilter = (filter) => {
     filter
   }
 }
-
-// Higher-order function to bind notification action creators
-export const bindNotificationActionCreators = (dispatch) => ({
-  boundMarkAsRead: (index) => dispatch(markAsRead(index)),
-  boundSetNotificationFilter: (filter) => dispatch(setNotificationFilter(filter))
-});

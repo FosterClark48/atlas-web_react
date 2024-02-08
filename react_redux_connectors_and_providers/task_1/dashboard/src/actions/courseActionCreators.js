@@ -13,9 +13,3 @@ export const unselectCourse = index => {
     index
   }
 }
-
-// Higher-order function to bind action creators
-export const bindCourseActionCreators = (dispatch) => ({
-  boundSelectCourse: (index) => dispatch(selectCourse(index)),
-  boundUnselectCourse: (index) => dispatch(unselectCourse(index))
-});
