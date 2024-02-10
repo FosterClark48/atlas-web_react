@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
 
@@ -81,7 +82,7 @@ class Login extends Component {
   handleLoginSubmit = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.props.logIn(email, password);
+    this.props.login(email, password);
     console.log('Log in button clicked my guy');
   }
 
@@ -140,5 +141,9 @@ class Login extends Component {
     );
   }
 }
+
+Login.PropTypes = {
+  login: PropTypes.func.isRequired,
+};
 
 export default Login;

@@ -76,16 +76,6 @@ const listNotifications = [
 
 class App extends Component {
 
-  logIn = (email, password) => {
-    this.setState({ user: { email, password, isLoggedIn: true } });
-    console.log('Logged in... my guy');
-  }
-
-  logOut = () => {
-    this.setState({ user: { ...this.state.user, isLoggedIn: false }});
-    console.log('Logging out... my guy');
-  }
-
   componentDidMount() {
     this.handleKeyDown = (event) => {
       if(event.ctrlKey && event.key === 'h') {
@@ -126,7 +116,7 @@ class App extends Component {
             </BodySectionWithMarginBottom>
           ) : (
             <BodySectionWithMarginBottom title='Log in to continue'>
-              <Login logIn={this.logIn} />
+              <Login logIn={this.props.login} />
             </BodySectionWithMarginBottom>
           )}
           <div className={css(styles.newsMargin)}>
@@ -148,6 +138,8 @@ App.propTypes = {
   displayDrawer: PropTypes.bool,
   displayNotificationDrawer: PropTypes.func,
   hideNotificationDrawer: PropTypes.func,
+  login: PropTypes.func,
+  logout: PropTypes.func,
 };
 
 App.defaultProps = {
@@ -167,6 +159,8 @@ export function mapDispatchToProps(dispatch) {
   return {
     displayNotificationDrawer: () => dispatch(displayNotificationDrawer()),
     hideNotificationDrawer: () => dispatch(hideNotificationDrawer()),
+    login: (email, password) => dispatch(loginRequest(email, password)),
+    logout: () => dispatch(logout()),
   };
 };
 
