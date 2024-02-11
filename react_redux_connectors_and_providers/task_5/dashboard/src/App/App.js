@@ -10,7 +10,6 @@ import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBot
 import BodySection from "../BodySection/BodySection";
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
-import { Map, List } from 'immutable';
 import { loginRequest, logout, displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators';
 
 const styles = StyleSheet.create({
@@ -106,7 +105,6 @@ class App extends Component {
               displayDrawer={displayDrawer}
               handleDisplayDrawer={displayNotificationDrawer}
               handleHideDrawer={hideNotificationDrawer}
-              markNotificationAsRead={this.markNotificationAsRead}
             />
           </div>
         </div>

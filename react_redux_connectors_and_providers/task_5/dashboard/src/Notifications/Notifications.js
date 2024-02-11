@@ -4,6 +4,8 @@ import { NotificationItemShape } from "./NotificationItemShape";
 import closeIcon from '../assets/close-icon.png';
 import PropTypes from 'prop-types';
 import { StyleSheet, css, } from 'aphrodite';
+import { connect } from 'react-redux';
+import { fetchNotifications, markAsRead } from '../actions/notificationActionCreators';
 
 const fadeIn = {
   'from': { opacity: 0.5 },
@@ -94,7 +96,12 @@ const styles = StyleSheet.create({
   },
 })
 
+
 class Notifications extends PureComponent {
+
+  componentDidMount() {
+    this.props.fetchNotifications();
+  };
 
   render() {
     const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer, markNotificationAsRead } = this.props;
@@ -164,4 +171,17 @@ Notifications.defaultProps = {
   markNotificationAsRead: () => {},
 };
 
-export default Notifications;
+function mapStateToProps(state) {
+  const notificationState = state.notification;
+  return {
+    listNotifications: notificationState.get('notifications'),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchNotifications: () => dispatch(fetchNotifications()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
