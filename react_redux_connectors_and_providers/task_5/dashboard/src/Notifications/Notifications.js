@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import NotificationItem from "./NotificationItem";
-import { NotificationItemShape } from "./NotificationItemShape";
 import closeIcon from '../assets/close-icon.png';
 import PropTypes from 'prop-types';
 import { StyleSheet, css, } from 'aphrodite';
 import { connect } from 'react-redux';
 import { fetchNotifications, markAsRead } from '../actions/notificationActionCreators';
+import { getUnreadNotifications } from '../selectors/notificationSelector';
 
 const fadeIn = {
   'from': { opacity: 0.5 },
@@ -104,7 +104,7 @@ class Notifications extends PureComponent {
   };
 
   render() {
-    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer, markNotificationAsRead } = this.props;
+    const { displayDrawer, listNotifications, handleDisplayDrawer, handleHideDrawer } = this.props;
     const iconStyle = {
       width: '.8rem',
       height: '.8rem',
@@ -136,7 +136,7 @@ class Notifications extends PureComponent {
                       type={notification.type}
                       value={notification.value}
                       html={notification.html}
-                      markAsRead={() => markNotificationAsRead(notification.id)}
+                      markAsRead={() => markAsRead(notification.id)}
                     />
                   ))
                 )}
@@ -157,10 +157,14 @@ class Notifications extends PureComponent {
 
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
-  listNotifications: PropTypes.arrayOf(NotificationItemShape),
+  listNotifications: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string,
+    value: PropTypes.string,
+  })),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
-  markNotificationAsRead: PropTypes.func,
+  markAsRead: PropTypes.func,
 };
 
 Notifications.defaultProps = {
@@ -168,19 +172,19 @@ Notifications.defaultProps = {
   listNotifications: [],
   handleDisplayDrawer: () => {},
   handleHideDrawer: () => {},
-  markNotificationAsRead: () => {},
 };
 
 function mapStateToProps(state) {
   const notificationState = state.notification;
   return {
-    listNotifications: notificationState.get('notifications'),
+    listNotifications: getUnreadNotifications(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     fetchNotifications: () => dispatch(fetchNotifications()),
+    markAsRead: (id) => dispatch(markAsRead(id)),
   };
 }
 

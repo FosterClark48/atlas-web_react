@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const getFilter = (state) => state.get('filter');
-const getNotificationsMap = (state) => state.get('notifications');
+const getFilter = (state) => state.notifications.filter;
+const getNotificationsMap = (state) => state.notifications.notifications;
 
 export const filterTypeSelected = createSelector(
   [getFilter],
