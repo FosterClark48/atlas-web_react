@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../assets/atlas_logo.png';
 import { StyleSheet, css } from 'aphrodite';
-import UserContext from '../App/AppContext';
+import { connect } from 'react-redux';
+import { logout } from '../actions/uiActionCreators';
+import { Map } from 'immutable';
 
 const styles = StyleSheet.create({
 
@@ -59,10 +61,8 @@ const styles = StyleSheet.create({
 
 
 class Header extends Component {
-  static contextType = UserContext;
-
   render () {
-    const { user, logOut } = this.context;
+    const { user, logOut } = this.props;
 
     return (
       <header className={css(styles.headerMain)}>
@@ -82,4 +82,17 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export function mapStateToProps(state) {
+  const uiReducer = state.ui;
+    const isLoggedIn = uiReducer.get('isUserLoggedIn');
+    const email = uiReducer.getIn(['user', 'email']);
+    return { user: { isLoggedIn, email } };
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    logOut: () => dispatch(logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

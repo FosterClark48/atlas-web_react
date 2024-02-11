@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from './App/App';
+import App from './App/App';
 import { configureStore } from '@reduxjs/toolkit';
 import uiReducer from './reducers/uiReducer';
 import { Provider } from 'react-redux';
@@ -8,8 +8,12 @@ import { Provider } from 'react-redux';
 // Create Redux store holding state of your app
 const store = configureStore({
   reducer: {
-    ui: uiReducer
+    ui: uiReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 // Root for the main app
@@ -21,3 +25,5 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+export default store;

@@ -8,6 +8,7 @@ import Login from '../Login/Login';
 import CourseList from "../CourseList/CourseList";
 import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import BodySection from "../BodySection/BodySection";
+import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import { Map, List } from 'immutable';
 import { loginRequest, logout, displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators';
@@ -116,7 +117,7 @@ class App extends Component {
             </BodySectionWithMarginBottom>
           ) : (
             <BodySectionWithMarginBottom title='Log in to continue'>
-              <Login logIn={this.props.login} />
+              <Login login={this.props.login} />
             </BodySectionWithMarginBottom>
           )}
           <div className={css(styles.newsMargin)}>
@@ -148,10 +149,11 @@ App.defaultProps = {
 };
 
 export function mapStateToProps(state) {
-  const uiReducer = state.get('uiReducer', Map());
+  const uiState = state.ui;
+
   return {
-    isLoggedIn: uiReducer.get('isUserLoggedIn', false),
-    displayDrawer: uiReducer.get('isNotificationDrawerVisible', false),
+    isLoggedIn: uiState.get('isUserLoggedIn', false),
+    displayDrawer: uiState.get('isNotificationDrawerVisible', false),
   };
 };
 

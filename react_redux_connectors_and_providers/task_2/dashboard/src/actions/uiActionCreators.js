@@ -25,15 +25,17 @@ export const hideNotificationDrawer = () => {
   }
 }
 
-export const loginSuccess = () => {
+export const loginSuccess = (user) => {
   return {
     type: LOGIN_SUCCESS,
+    user,
   }
 }
 
-export const loginFailure = () => {
+export const loginFailure = (error) => {
   return {
     type: LOGIN_FAILURE,
+    payload: { error }
   }
 }
 
@@ -50,10 +52,10 @@ export const loginRequest = (email, password) => {
       }
 
       //Dispatch loginSuccess when fetch is successful
-      dispatch(loginSuccess());
+      dispatch(loginSuccess({ email, password }));
     } catch (error) {
       // Dispatch loginFailure when the fetch fails
-      dispatch(loginFailure());
+      dispatch(loginFailure(error.toString()));
     }
   };
 };

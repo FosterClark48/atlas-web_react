@@ -26,9 +26,9 @@ Footer.propTypes = {
 };
 
 export function mapStateToProps(state) {
-  const uiReducer = state.get('uiReducer', Map());
-  const isLoggedIn = uiReducer.get('isUserLoggedIn', false);
-  return { user: { isLoggedIn } };
+  const uiReducer = state.ui;
+    const isLoggedIn = uiReducer.get('isUserLoggedIn', false);
+    return { user: { isLoggedIn } };
 };
 
 export default connect(mapStateToProps)(Footer);
