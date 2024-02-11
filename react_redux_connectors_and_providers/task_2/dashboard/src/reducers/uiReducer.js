@@ -13,12 +13,15 @@ function uiReducer(state = initialState, action) {
     case 'HIDE_NOTIFICATION_DRAWER':
       return state.set('isNotificationDrawerVisible', false);
     case 'LOGIN_SUCCESS':
+    case 'LOGIN':
       return state
-      .set('isUserLoggedIn', true)
-      .set('user', Map(action.user));
+        .set('isUserLoggedIn', true)
+        .set('user', Map(action.user));
     case 'LOGIN_FAILURE':
     case 'LOGOUT':
-      return state.set('isUserLoggedIn', false);
+      return state
+        .set('isUserLoggedIn', false)
+        .set('user', null);
     default:
       return state;
   }
